@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: spring-pi-deployment
+  name: spring-pi-deployment
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: spring-pi-deployment
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: spring-pi-deployment
+    spec:
+      containers:
+      - image: dashaun/spring-pi-native:focal-arm64
+        name: spring-pi
+        resources: {}
+status: {}
