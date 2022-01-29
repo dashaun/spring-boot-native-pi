@@ -10,3 +10,13 @@ https://github.com/dmikusa-pivotal/paketo-arm64
 The docker images were all created using a Raspberry Pi 4.8gb.
 
 The native image that I was able to create works (better than) as expected on a Raspberry Pi Zero 2W.
+
+### Getting Started
+
+Clone the repo then:
+
+```shell
+./mvnw -Pnative clean package spring-boot:build-image -DskipTests
+```
+
+### Feedback Welcome!
