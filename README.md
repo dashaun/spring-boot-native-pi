@@ -16,7 +16,7 @@ The native image that I was able to create works (better than) as expected on a 
 Clone the repo then:
 
 ```shell
-./mvnw -Pnative clean package spring-boot:build-image -DskipTests
+./mvnw spring-boot:build-image -DskipTests
 ```
 
 ### Feedback Welcome!
