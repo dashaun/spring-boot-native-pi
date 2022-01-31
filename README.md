@@ -13,10 +13,13 @@ The native image that I was able to create works (better than) as expected on a 
 
 ### Getting Started
 
-Clone the repo then:
+- Clone the repo to an ARM64 host.
+- Make sure that Java is installed, I've tested with Java 17
 
 ```shell
 ./mvnw spring-boot:build-image -DskipTests
 ```
+
+Once complete, you should have a new image "spring-pi:0.0.1-SNAPSHOT" in your local registry.
 
 ### Feedback Welcome!
