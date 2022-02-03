@@ -1,0 +1,24 @@
+name: ARM64-Native
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+
+    runs-on: oracle-arm
+
+    steps:
+      - name: Checkout master
+        uses: actions/checkout@v1
+        with:
+          submodules: true
+      #Run Tests
+      - name: Run Tests
+        run: ./mvnw -Pnative test
+      #Build Image
+      - name: Build Image
+        run: ./mvnw -Pnative -DskipTests spring-boot:build-image
