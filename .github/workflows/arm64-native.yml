@@ -16,9 +16,6 @@ jobs:
         uses: actions/checkout@v2
         with:
           submodules: true
-      #Run Tests
-      - name: Run Tests
-        run: ./mvnw -Pnative test
       #Build Image
       - name: Build Image
         run: ./mvnw -Pnative -DskipTests spring-boot:build-image
