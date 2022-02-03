@@ -13,9 +13,14 @@ jobs:
 
     steps:
       - name: Checkout master
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
         with:
           submodules: true
+      - name: Setup Java
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'liberica'
+          java-version: '17'
       #Run Tests
       - name: Run Tests
         run: ./mvnw -Pnative test
