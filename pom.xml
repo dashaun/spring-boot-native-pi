@@ -89,7 +89,7 @@
         <configuration>
           <classifier>${repackage.classifier}</classifier>
           <image>
-            <builder>paketobuildpacks/builder:tiny</builder>
+            <builder>dashaun/native-builder:focal-arm64</builder>
             <env>
               <BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>
             </env>
@@ -159,6 +159,7 @@
         </plugins>
       </build>
     </profile>
+
     <profile>
       <id>native-arm64</id>
       <properties>

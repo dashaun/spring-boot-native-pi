@@ -18,4 +18,4 @@ jobs:
           submodules: true
       #Build Image
       - name: Build Image
-        run: ./mvnw -Pnative-arm64 spring-boot:build-image -DskipTests
+        run: ./mvnw spring-boot:build-image -DskipTests
