@@ -1,4 +1,4 @@
-name: ARM64-Native
+name: Native-AMD64
 
 on:
   workflow_dispatch:
