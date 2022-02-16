@@ -12,6 +12,10 @@ jobs:
     runs-on: ubuntu-18.04
 
     steps:
+      - uses: actions/setup-java@v2
+        with:
+          distribution: 'liberic' # See 'Supported distributions' for available options
+          java-version: '17'
       - name: Checkout master
         uses: actions/checkout@v2
         with:
