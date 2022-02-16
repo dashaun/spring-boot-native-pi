@@ -199,6 +199,7 @@
                 <builder>paketobuildpacks/builder:tiny</builder>
                 <env>
                   <BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>
+                  <BP_JVM_VERSION>17</BP_JVM_VERSION>
                 </env>
                 <name>docker.io/library/
                   ${project.artifactId}:${project.version}-amd64</name>
