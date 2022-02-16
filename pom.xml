@@ -10,7 +10,7 @@
   </parent>
   <groupId>dev.dashaun</groupId>
   <artifactId>spring-pi</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.2-SNAPSHOT</version>
   <name>spring-pi</name>
   <description>Demo project for Spring Boot</description>
   <properties>
@@ -89,7 +89,7 @@
         <configuration>
           <classifier>${repackage.classifier}</classifier>
           <image>
-            <builder>dashaun/native-builder:focal-arm64</builder>
+            <builder>paketobuildpacks/builder:tiny</builder>
             <env>
               <BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>
             </env>
@@ -155,6 +155,19 @@
                 <phase>package</phase>
               </execution>
             </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <configuration>
+              <classifier>${repackage.classifier}</classifier>
+              <image>
+                <builder>dashaun/native-builder:focal-arm64</builder>
+                <env>
+                  <BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>
+                </env>
+              </image>
+            </configuration>
           </plugin>
         </plugins>
       </build>
