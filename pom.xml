@@ -200,8 +200,7 @@
                 <env>
                   <BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>
                 </env>
-                <name>docker.io/library/
-                  ${project.artifactId}:${project.version}-amd64</name>
+                <name>${project.artifactId}:${project.version}-amd64</name>
               </image>
             </configuration>
           </plugin>
