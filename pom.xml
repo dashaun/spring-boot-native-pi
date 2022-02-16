@@ -163,7 +163,6 @@
     <profile>
       <id>native-arm64</id>
       <properties>
-        <repackage.classifier>exec</repackage.classifier>
         <native-buildtools.version>0.9.9</native-buildtools.version>
       </properties>
       <build>
@@ -172,7 +171,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-maven-plugin</artifactId>
             <configuration>
-              <classifier>${repackage.classifier}</classifier>
               <image>
                 <builder>dashaun/native-builder:focal-arm64</builder>
                 <env>
@@ -180,16 +178,6 @@
                 </env>
               </image>
             </configuration>
-            <executions>
-              <execution>
-                <goals>
-                  <goal>repackage</goal>
-                </goals>
-                <configuration>
-                  <attach>false</attach>
-                </configuration>
-              </execution>
-            </executions>
           </plugin>
         </plugins>
       </build>
