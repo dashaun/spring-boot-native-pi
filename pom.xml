@@ -89,9 +89,9 @@
         <configuration>
           <classifier>${repackage.classifier}</classifier>
           <image>
-            <builder>dashaun/native-builder:focal-arm64</builder>
+            <builder>paketobuildpacks/builder:tiny</builder>
             <env>
-              <BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>
+              <BP_NATIVE_IMAGE>false</BP_NATIVE_IMAGE>
             </env>
           </image>
         </configuration>
@@ -180,6 +180,16 @@
                 </env>
               </image>
             </configuration>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>repackage</goal>
+                </goals>
+                <configuration>
+                  <attach>false</attach>
+                </configuration>
+              </execution>
+            </executions>
           </plugin>
           <plugin>
             <groupId>org.springframework.experimental</groupId>
