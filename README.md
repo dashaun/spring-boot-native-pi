@@ -13,9 +13,20 @@ The native image that I was able to create works (better than) as expected on a 
 
 ### Getting Started
 
-- Clone the repo to an ARM64 host.
+- Clone the repo.
 - Make sure that Java is installed, I've tested with Java 17
 
+### Generate Native ARM64
+```shell
+./mvnw -Pnative-arm64 spring-boot:build-image -DskipTests
+```
+
+### Generate Native AMD64
+```shell
+./mvnw -Pnative-amd64 spring-boot:build-image -DskipTests
+```
+
+### Generate image AMD64
 ```shell
 ./mvnw spring-boot:build-image -DskipTests
 ```
