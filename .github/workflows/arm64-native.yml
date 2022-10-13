@@ -20,6 +20,12 @@ jobs:
           -H 'Accept: application/vnd.github.everest-preview+json' \
           -u ${{ secrets.ACCESS_TOKEN }} \
           --data '{"event_type": "init '"$GITHUB_REPOSITORY"'", "client_payload": { "repository": "'"$GITHUB_REPOSITORY"'" }}'
+      - name: dynamic-tf-oci-arm64-runner
+        run: |
+          curl -X POST https://api.github.com/repos/dashaun/dynamic-tf-oci-arm64-runner/dispatches \
+          -H 'Accept: application/vnd.github.everest-preview+json' \
+          -u ${{ secrets.ACCESS_TOKEN }} \
+          --data '{"event_type": "init '"$GITHUB_REPOSITORY"'", "client_payload": { "repository": "'"$GITHUB_REPOSITORY"'" }}'
 
   build:
     runs-on: ARM64
