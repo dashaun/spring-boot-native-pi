@@ -29,6 +29,7 @@ jobs:
 
   build:
     runs-on: ARM64
+    needs: setup-runner
     steps:
       - name: Checkout master
         uses: actions/checkout@v2
