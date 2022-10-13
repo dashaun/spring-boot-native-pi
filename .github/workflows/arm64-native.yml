@@ -10,6 +10,10 @@ jobs:
   setup-runner:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout master
+        uses: actions/checkout@v2
+        with:
+          submodules: true
       - name: Terraform Cloud Workspace Init
         run: |
           curl -X POST https://api.github.com/repos/dashaun/terraform-cloud/dispatches \
