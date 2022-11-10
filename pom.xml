@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.6.4</version>
+    <version>3.0.0-RC1</version>
     <relativePath></relativePath>
     <!-- lookup parent from repository -->
   </parent>
@@ -16,46 +16,15 @@
   <properties>
     <java.version>17</java.version>
     <repackage.classifier></repackage.classifier>
-    <spring-native.version>0.11.2</spring-native.version>
   </properties>
   <dependencies>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-actuator</artifactId>
-      <exclusions>
-        <exclusion>
-          <groupId>io.micrometer</groupId>
-          <artifactId>micrometer-core</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-security</artifactId>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
-      <exclusions>
-        <exclusion>
-          <groupId>org.apache.tomcat.embed</groupId>
-          <artifactId>tomcat-embed-core</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>org.apache.tomcat.embed</groupId>
-          <artifactId>tomcat-embed-websocket</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.tomcat.experimental</groupId>
-      <artifactId>tomcat-embed-programmatic</artifactId>
-      <version>${tomcat.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.experimental</groupId>
-      <artifactId>spring-native</artifactId>
-      <version>${spring-native.version}</version>
     </dependency>
 
     <dependency>
@@ -65,6 +34,14 @@
     </dependency>
   </dependencies>
   <repositories>
+    <repository>
+      <id>spring-milestones</id>
+      <name>Spring Milestones</name>
+      <url>https://repo.spring.io/milestone</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
     <repository>
       <snapshots>
         <enabled>false</enabled>
@@ -83,6 +60,14 @@
       <name>Spring Releases</name>
       <url>https://repo.spring.io/release</url>
     </pluginRepository>
+    <pluginRepository>
+      <id>spring-milestones</id>
+      <name>Spring Milestones</name>
+      <url>https://repo.spring.io/milestone</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </pluginRepository>
   </pluginRepositories>
 
   <build>
@@ -93,31 +78,15 @@
         <configuration>
           <classifier>${repackage.classifier}</classifier>
           <image>
+            <bindings>
+              <binding>${project.basedir}/bindings/ca-certificates:/platform/bindings/ca-certificates</binding>
+            </bindings>
             <builder>paketobuildpacks/builder:tiny</builder>
             <env>
               <BP_NATIVE_IMAGE>false</BP_NATIVE_IMAGE>
             </env>
           </image>
         </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.springframework.experimental</groupId>
-        <artifactId>spring-aot-maven-plugin</artifactId>
-        <version>${spring-native.version}</version>
-        <executions>
-          <execution>
-            <id>test-generate</id>
-            <goals>
-              <goal>test-generate</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>generate</id>
-            <goals>
-              <goal>generate</goal>
-            </goals>
-          </execution>
-        </executions>
       </plugin>
     </plugins>
   </build>
@@ -126,7 +95,7 @@
     <profile>
       <id>native-arm64</id>
       <properties>
-        <native-buildtools.version>0.9.9</native-buildtools.version>
+        <native-buildtools.version>0.9.17</native-buildtools.version>
       </properties>
       <build>
         <plugins>
@@ -135,6 +104,9 @@
             <artifactId>spring-boot-maven-plugin</artifactId>
             <configuration>
               <image>
+                <bindings>
+                  <binding>${project.basedir}/bindings/ca-certificates:/platform/bindings/ca-certificates</binding>
+                </bindings>
                 <builder>dashaun/native-builder:focal-arm64</builder>
                 <env>
                   <BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>
@@ -150,7 +122,7 @@
     <profile>
       <id>native-amd64</id>
       <properties>
-        <native-buildtools.version>0.9.9</native-buildtools.version>
+        <native-buildtools.version>0.9.17</native-buildtools.version>
       </properties>
       <build>
         <plugins>
@@ -159,6 +131,9 @@
             <artifactId>spring-boot-maven-plugin</artifactId>
             <configuration>
               <image>
+                <bindings>
+                  <binding>${project.basedir}/bindings/ca-certificates:/platform/bindings/ca-certificates</binding>
+                </bindings>
                 <builder>paketobuildpacks/builder:tiny</builder>
                 <env>
                   <BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>
